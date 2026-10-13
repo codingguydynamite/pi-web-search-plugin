@@ -1,0 +1,27 @@
+# SearXNG configuration for a self-hosted instance used by this plugin.
+# Mount this file at /etc/searxng/settings.yml (see docker-compose.example.yml).
+#
+# For a PRIVATE LAN instance. Do NOT expose this to the public internet
+# without enabling server.limiter and picking a strong secret_key.
+
+use_default_settings: true
+
+server:
+  # Random 32-byte key generated for this deployment. Regenerate with:
+  #   openssl rand -hex 32
+  secret_key: "4f7b2c9d8a61e35f0b2c4d7a91e8f36c5d0a2b4f7e1c3958a6d0f24b8c1e3a7d"
+  bind_address: "[::]"
+  port: 8080
+  limiter: false
+  public_instance: false
+
+search:
+  # json enables the API the plugin consumes: GET /search?q=...&format=json
+  formats:
+    - html
+    - json
+
+# A few popular engines (google, bing, duckduckgo, startpage) get rate-limited
+# or show CAPTCHAs when hammered from a single IP; SearXNG suspends them
+# automatically and recovers. A broad default engine set is reliable enough
+# for a LAN instance.

@@ -1,0 +1,29 @@
+# OPTIONAL: only needed if you want to host SearXNG yourself.
+# If SearXNG already runs on your network (e.g. http://192.168.1.69:8080),
+# skip this file entirely and just point the plugin at it.
+#
+#   cd searxng/   # or keep this file next to the settings and run:
+#   docker compose -f docker-compose.example.yml up -d
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng-local
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./searxng/settings.yml:/etc/searxng/settings.yml:ro
+      - searxng-data:/etc/searxng/data
+    environment:
+      SEARXNG_BASE_URL: "http://127.0.0.1:8080/"
+      SEARXNG_PORT: "8080"
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -fsS -o /dev/null http://127.0.0.1:8080/healthz || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  searxng-data:
