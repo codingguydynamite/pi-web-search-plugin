@@ -17,10 +17,10 @@
 import type { AgentToolResult, ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Text } from "@earendil-works/pi-tui";
 import { Type, type Static } from "typebox";
-import { resolveSearxngConfig } from "./config.ts";
-import { formatFetchedPages, formatSearchResults } from "./format.ts";
-import { SearxngError, searxngSearch } from "./searxng.ts";
-import { fetchUrl } from "./url_fetch.ts";
+import { resolveSearxngConfig } from "../src/config.ts";
+import { formatFetchedPages, formatSearchResults } from "../src/format.ts";
+import { SearxngError, searxngSearch } from "../src/searxng.ts";
+import { fetchUrl } from "../src/url_fetch.ts";
 
 const MAX_RESULTS = 10;
 const MAX_URLS = 5;

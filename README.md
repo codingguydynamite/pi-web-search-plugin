@@ -178,8 +178,9 @@ Hard-coded limits (change in source if needed):
 ## Files
 
 ```
-package.json              pi package manifest (extension entry, no deps)
-src/index.ts              tool registration (web_search, url_context)
+package.json              pi package manifest (no deps)
+extensions/searxng.ts     extension entry: tool registration (web_search, url_context)
+src/                      shared modules used by the extension
 src/searxng.ts            SearXNG JSON API client + validation
 src/url_fetch.ts          URL fetch + readable-text extraction
 src/config.ts             base-URL resolution (env → settings → default)
